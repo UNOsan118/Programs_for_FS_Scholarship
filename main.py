@@ -60,11 +60,13 @@ def plot_word_frequency(text_data, folder_path):
     
     # ラベルを45度回転
     plt.xticks(rotation=30, ha="right")
-    
+
+    # レイアウトの自動調整
+    plt.tight_layout()
+
     # 画像の保存
-    plt.tight_layout()  # レイアウトの自動調整
-    plt.savefig(os.path.join(folder_path, 'word_frequency_plot.png'))
-    print("単語の出現頻度をプロットした画像を[datas/word_frequency_plot.png]に保存しました。")
+    create_folder_if_not_exists(folder_path)
+    save_image_with_message(plt, os.path.join(folder_path, 'word_frequency_plot.png'), "単語の出現頻度をプロットした")
     plt.show()
 
 def generate_wordcloud(text_data, folder_path):
@@ -76,11 +78,13 @@ def generate_wordcloud(text_data, folder_path):
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
 
+    # 画像の保存
     create_folder_if_not_exists(folder_path)
     save_image_with_message(plt, os.path.join(folder_path, 'wordcloud.png'), "クラウドワードの")
+    plt.show()
 
 def main():
-    # URLをユーザーに入力させる
+    # ユーザーがURLを入力
     url = input("解析したいウェブページのURLを入力してください: ")
     print("\n")
 
